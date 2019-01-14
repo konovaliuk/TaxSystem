@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+	<Resource name="jdbc/taxsystem" auth="Container"
+		type="javax.sql.DataSource" username="root" password="root"
+		driverClassName="com.mysql.jdbc.Driver" validationQuery="select 1"
+		maxTotal="10" maxIdle="4"
+		url="jdbc:mysql://localhost/tax_system?autoReconnect=true&amp;useSSL=false&amp;serverTimezone=UTC" />
+</Context>
