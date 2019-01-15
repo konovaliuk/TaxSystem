@@ -28,7 +28,7 @@ public class FrontController extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
-    ControllerHelper controllerHelper;
+    private ControllerHelper controllerHelper;
 
     public void init() {
         this.controllerHelper = ControllerHelper.getInstance();

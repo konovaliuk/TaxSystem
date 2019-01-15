@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.stream.Stream;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -43,11 +44,11 @@ public class InputValidatorTest {
                 {"mainActivityIncome", "21321y", "taxReportForm", false},
                 {"name", "Fictional corporation", "taxpayer", true},
                 {"name", "Fictional_corporation", "taxpayer", false},
-                {"name", "/Fictional corporation/", "taxpayer", false},
+                {"name", "/Fictional corporation/", "taxpayer", true},
                 {"name", "Вымышленная компания", "taxpayer", true},
                 {"name", "Вымышленная компания2018", "taxpayer", true},
                 {"name", "`Вымышленная компания2018'", "taxpayer", true},
-                {"name", "`Вымышленная компания2018'", "taxpayer", true},
+                {"name", "\"'*`іфв@?( )„=№« »>/!,+ :'\"`/+-<\"", "taxpayer", true},
                 {"registrationNumber", "KO321215", "taxpayer", true},
                 {"registrationNumber", "21321215", "taxpayer", true},
                 {"registrationNumber", "2132121 5", "taxpayer", false},
@@ -57,7 +58,8 @@ public class InputValidatorTest {
                 {"name", "Vladimir2018", "user", false},
                 {"name", "Vladimir Vlad", "user", true},
                 {"name", "Владимир", "user", true},
-                {"name", "Владимир Влад", "user", true},
+                {"name", "Яніна", "user", true},
+                {"name", "Владимр Влад", "user", true},
                 {"name", "O`connor", "user", true},
                 {"name", "O'connor", "user", true},
                 {"username", "vladimir2018", "user", true},
@@ -77,6 +79,10 @@ public class InputValidatorTest {
                 {"email", "#!$%&'*+-/=?^_`{}|~@email.org", "user", true},
                 {"email", "Abc\\@def\"@example.com", "user", true},
                 {"email", "емейл@.com*", "user", true},
+                {"description", Stream.generate(() -> "a")
+                    	.limit(1001)
+                    	.collect(StringBuilder::new, StringBuilder::append, StringBuilder::append)
+                    	.toString(), "feedbackForm", false},
                 {"email", "A@b@c@example.com", "user", true},});
     }
 

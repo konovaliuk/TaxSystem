@@ -17,22 +17,17 @@ import com.ivahnenko.taxsystem.controller.commands.user.*;
  * Is used by security filters.
  */
 class ControllerHelper {
-    private Map<String, Command> commands;
 
-    private static ControllerHelper instance;
-
-    static ControllerHelper getInstance(){
-        if(instance == null){
-            synchronized (ControllerHelper.class) {
-                if(instance == null){
-                    instance = new ControllerHelper();
-                }
-            }
-        }
-        return instance;
+    private static class ControllerHelperHolder {
+        public static final ControllerHelper HOLDER_INSTANCE = new ControllerHelper();
     }
 
-   private ControllerHelper() {
+    static ControllerHelper getInstance() {
+        return ControllerHelperHolder.HOLDER_INSTANCE;
+    }
+
+    private Map<String, Command> commands;
+    private ControllerHelper() {
         init();
     }
 
