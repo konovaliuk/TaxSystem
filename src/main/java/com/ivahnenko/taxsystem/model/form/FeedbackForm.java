@@ -6,7 +6,6 @@ import com.ivahnenko.taxsystem.model.Taxpayer;
 import com.ivahnenko.taxsystem.model.User;
 
 public class FeedbackForm extends Form {
-    private static final long serialVersionUID = 1L;
     private String description;
     
     public static class Builder {

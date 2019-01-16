@@ -1,13 +1,11 @@
 package com.ivahnenko.taxsystem.model.form;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 
 import com.ivahnenko.taxsystem.model.Taxpayer;
 import com.ivahnenko.taxsystem.model.User;
 
-public abstract class Form implements Serializable {
-    private static final long serialVersionUID = 1L;
+public abstract class Form {
     private Integer id;
     private Taxpayer taxpayer;
     private User initiator;

@@ -1,9 +1,6 @@
 package com.ivahnenko.taxsystem.model;
 
-import java.io.Serializable;
-
-public class User implements Serializable {	
-	private static final long serialVersionUID = 1L;
+public class User {	
 	private Integer id;
 	private String name;
 	private String surname;

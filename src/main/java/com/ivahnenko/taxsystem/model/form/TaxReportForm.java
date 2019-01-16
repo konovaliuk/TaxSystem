@@ -6,7 +6,6 @@ import com.ivahnenko.taxsystem.model.Taxpayer;
 import com.ivahnenko.taxsystem.model.User;
 
 public class TaxReportForm extends Form {
-    private static final long serialVersionUID = 1L;
     private byte quarter;
     private short year;
     private double mainActivityIncome;
@@ -173,53 +172,42 @@ public class TaxReportForm extends Form {
     }
 
     @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = super.hashCode();
-        long temp;
-        temp = Double.doubleToLongBits(investmentExpenses);
-        result = prime * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(investmentIncome);
-        result = prime * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(mainActivityExpenses);
-        result = prime * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(mainActivityIncome);
-        result = prime * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(propertyExpenses);
-        result = prime * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(propertyIncome);
-        result = prime * result + (int) (temp ^ (temp >>> 32));
-        result = prime * result + quarter;
-        result = prime * result + year;
-        return result;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
+        TaxReportForm that = (TaxReportForm) o;
+
+        if (getQuarter() != that.getQuarter()) return false;
+        if (getYear() != that.getYear()) return false;
+        if (Double.compare(that.getMainActivityIncome(), getMainActivityIncome()) != 0) return false;
+        if (Double.compare(that.getInvestmentIncome(), getInvestmentIncome()) != 0) return false;
+        if (Double.compare(that.getPropertyIncome(), getPropertyIncome()) != 0) return false;
+        if (Double.compare(that.getMainActivityExpenses(), getMainActivityExpenses()) != 0) return false;
+        if (Double.compare(that.getInvestmentExpenses(), getInvestmentExpenses()) != 0) return false;
+        return Double.compare(that.getPropertyExpenses(), getPropertyExpenses()) == 0;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (!super.equals(obj))
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        TaxReportForm other = (TaxReportForm) obj;
-        if (Double.doubleToLongBits(investmentExpenses) != Double.doubleToLongBits(other.investmentExpenses))
-            return false;
-        if (Double.doubleToLongBits(investmentIncome) != Double.doubleToLongBits(other.investmentIncome))
-            return false;
-        if (Double.doubleToLongBits(mainActivityExpenses) != Double.doubleToLongBits(other.mainActivityExpenses))
-            return false;
-        if (Double.doubleToLongBits(mainActivityIncome) != Double.doubleToLongBits(other.mainActivityIncome))
-            return false;
-        if (Double.doubleToLongBits(propertyExpenses) != Double.doubleToLongBits(other.propertyExpenses))
-            return false;
-        if (Double.doubleToLongBits(propertyIncome) != Double.doubleToLongBits(other.propertyIncome))
-            return false;
-        if (quarter != other.quarter)
-            return false;
-        if (year != other.year)
-            return false;
-        return true;
+    public int hashCode() {
+        int result = super.hashCode();
+        long temp;
+        result = 31 * result + (int) getQuarter();
+        result = 31 * result + (int) getYear();
+        temp = Double.doubleToLongBits(getMainActivityIncome());
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(getInvestmentIncome());
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(getPropertyIncome());
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(getMainActivityExpenses());
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(getInvestmentExpenses());
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(getPropertyExpenses());
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        return result;
     }
 
     @Override
